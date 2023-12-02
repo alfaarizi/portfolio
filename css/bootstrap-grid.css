@@ -8,6 +8,7 @@
 html {
   box-sizing: border-box;
   -ms-overflow-style: scrollbar;
+  background-color: aqua;
 }
 
 *,
@@ -86,8 +87,8 @@ html {
 .col-xl-auto {
   position: relative;
   width: 100%;
-  padding-right: 0px;
-  padding-left: 0px;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 .col {
