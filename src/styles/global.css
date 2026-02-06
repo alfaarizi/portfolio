@@ -10,7 +10,7 @@
   }
 
   body {
-    @apply bg-primary text-white font-mono;
+    @apply bg-primary text-foreground font-mono;
   }
 
   /* Pattern backgrounds */
@@ -37,7 +37,7 @@
 
 @layer components {
   .section-title {
-    @apply font-serif text-4xl mb-12 border-b-2 border-accent inline-block pb-1;
+    @apply font-serif text-4xl lg:text-5xl mb-8 border-b-2 border-accent pb-1;
   }
 
   /* Fade-up animation */

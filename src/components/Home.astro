@@ -1,0 +1,88 @@
+---
+import { personal_info, currently, leadership } from '../lib/data'
+import { ArrowRight, ExternalLink, Mail } from 'lucide-astro'
+---
+
+<section id="home" class="relative min-h-screen pt-24 pb-16 flex items-center justify-center">
+  <div class="max-w-6xl mx-auto px-8 lg:px-12 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-[380px,1fr] gap-16 items-start justify-items-center lg:justify-items-start">
+      <!-- Left Column: Photo & CTAs -->
+      <div class="flex flex-col items-center lg:items-start w-full">
+        <!-- Photo -->
+        <img
+          src="/images/portrait.jpg"
+          alt="Muhammad Al Farizi"
+          class="w-80 h-96 bg-secondary rounded-lg mb-6 object-cover"
+        />
+
+        <!-- CTAs -->
+        <div class="grid grid-cols-3 gap-4 w-full max-w-sm">
+          <a
+            href="#projects"
+            class="px-4 py-2.5 bg-foreground text-primary font-medium text-center rounded hover:bg-foreground/90 transition-colors text-sm flex items-center justify-center gap-1.5"
+          >
+            Projects
+            <ArrowRight size={14} />
+          </a>
+          <a
+            href="/cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-4 py-2.5 border border-foreground text-foreground font-medium text-center rounded hover:bg-foreground/5 transition-colors text-sm flex items-center justify-center gap-1.5"
+          >
+            CV
+            <ExternalLink size={14} />
+          </a>
+          <a
+            href="#contact"
+            class="px-4 py-2.5 border border-foreground text-foreground font-medium text-center rounded hover:bg-foreground/5 transition-colors text-sm flex items-center justify-center gap-1.5"
+          >
+            Contact
+            <Mail size={14} />
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Info -->
+      <div class="space-y-10 text-left mx-auto lg:mx-0 max-w-2xl">
+        <!-- Name & Title -->
+        <div>
+          <h1 class="font-serif text-5xl lg:text-6xl mb-3 leading-tight">{personal_info.first_name} {personal_info.last_name}</h1>
+          <p class="text-xl lg:text-2xl text-accent mb-2 font-medium">{personal_info.title}</p>
+          <p class="text-base lg:text-lg text-foreground-light">{personal_info.description}</p>
+        </div>
+
+        <!-- Bio -->
+        <p class="text-lg lg:text-xl leading-relaxed text-foreground-medium">
+          {personal_info.bio}
+        </p>
+
+        <!-- Currently & Leadership -->
+        <div class="space-y-8">
+          <!-- Currently -->
+          <div>
+            <h2 class="text-sm uppercase tracking-wider text-foreground-lighter mb-4 font-medium">Currently</h2>
+            <ul class="space-y-2 list-disc list-inside marker:text-accent">
+              {currently.map((item) => (
+                <li class="text-sm lg:text-base leading-relaxed text-foreground-light">{item}</li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Leadership -->
+          <div>
+            <h2 class="text-sm uppercase tracking-wider text-foreground-lighter mb-4 font-medium">Leadership</h2>
+            <ul class="space-y-2 list-disc list-inside marker:text-accent">
+              {leadership.map((item) => (
+                <li class="text-sm lg:text-base leading-relaxed text-foreground-light">{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 pattern-dots pointer-events-none -z-10"></div>
+</section>
