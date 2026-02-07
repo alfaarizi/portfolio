@@ -1,0 +1,105 @@
+---
+import { recognitions } from '../lib/data'
+---
+
+<section id="recognitions" class="relative py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-8 lg:px-12">
+    <div class="flex flex-col items-center">
+      <h2 class="section-title mb-16">Recognitions</h2>
+
+      <div class="recognition-grid">
+        {
+          recognitions.map((recognition) => (
+            <article class="recognition-card">
+              <div class="recognition-image-container">
+                <img
+                  src={recognition.image}
+                  alt={recognition.title}
+                  class="recognition-image"
+                  loading="lazy"
+                />
+              </div>
+              <div class="recognition-content">
+                <p class="recognition-date">{recognition.date}</p>
+                <h3 class="recognition-title">{recognition.title}</h3>
+                <p class="recognition-issuer">Issued by {recognition.issuer}</p>
+                {recognition.description && (
+                  <p class="recognition-description">{recognition.description}</p>
+                )}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .recognition-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  .recognition-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .recognition-image-container {
+    padding: 4px;
+  }
+
+  .recognition-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 0.5rem;
+  }
+
+  .recognition-content {
+    padding: 1rem 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .recognition-date {
+    font-size: 0.6875rem;
+    color: var(--foreground-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .recognition-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--foreground);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+
+  .recognition-issuer {
+    font-size: 0.8125rem;
+    color: var(--foreground-light);
+    margin-bottom: 0.75rem;
+  }
+
+  .recognition-description {
+    font-size: 0.75rem;
+    color: var(--foreground-lighter);
+    line-height: 1.5;
+    margin-top: auto;
+  }
+
+  @media (max-width: 768px) {
+    .recognition-grid {
+      gap: 1rem;
+    }
+  }
+</style>
