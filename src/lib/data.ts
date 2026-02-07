@@ -124,14 +124,38 @@ export const projects = [
 // Experience
 export const experience = [
   {
+    id: 'gdg-budapest',
+    company: 'Google Developers Group Budapest',
+    position: 'Technical Lead',
+    type: 'leadership',
+    start_date: 'October 2025',
+    end_date: 'Present',
+    description:
+      'Designing and developing mentorship programs, coding challenges, workshops, hackathons, and coding competitions for GDG on ELTE.',
+    achievements: [],
+    technologies: [],
+  },
+  {
+    id: 'student-mentor',
+    company: 'Student Support Centre',
+    position: 'Senior Student Mentor',
+    type: 'leadership',
+    start_date: 'September 2024',
+    end_date: 'Present',
+    description:
+      'Mentoring international freshmen through weekly sessions and integration programs, facilitating successful university transition.',
+    achievements: [],
+    technologies: [],
+  },
+  {
     id: 'qnl-swe',
-    company: 'QNL',
+    company: 'Quantum Information National Laboratory',
     position: 'Junior Software Engineer',
     type: 'engineering',
     start_date: 'April 2025',
-    end_date: 'November 2025',
+    end_date: 'Present',
     description:
-      'Researching and implementing quantum circuit partitioning strategies for the SQUANDER C++ library. Building optimization models using Python solvers and maintaining Python-C++ bindings.',
+      'Researched and implemented quantum circuit partitioning strategies for the SQUANDER C++ library. Built optimization models using Python solvers and maintained Python-C++ bindings.',
     achievements: [
       'Developed 4 quantum circuit partitioning algorithms for SQUANDER C++ library (Kahn\'s, ILP, TDAG, GTQCP), outperforming IBM Qiskit and BQSkit benchmarks',
       'Led architectural redesign on Rocky Linux that eliminated 94.2% of legacy codebase (10,702 lines)',
@@ -140,49 +164,35 @@ export const experience = [
     technologies: ['Python', 'C++', 'CMake', 'CPython', 'Gurobi', 'PuLP'],
   },
   {
-    id: 'elte-progtech',
-    company: 'ELTE IK',
-    position: 'Teaching Instructor (Programming Technology)',
+    id: 'elte-teaching',
+    company: 'ELTE Faculty of Informatics',
+    position: 'Teaching Instructor',
     type: 'teaching',
-    start_date: 'September 2025',
+    start_date: 'February 2025',
     end_date: 'January 2026',
     description:
-      'Leading weekly lab sessions and office hours for undergraduate students. Guiding students through software design principles, testing methodologies, and project-based assignments.',
+      'Taught Object-Oriented Programming and Programming Technology to international student groups, covering core OOP concepts and Java programming. Delivered structured lessons with live coding demonstrations and provided detailed feedback on student submissions.',
     achievements: [
-      'Conducting 2 weekly lab sessions (5 hours) for 30 students with coding consultations and assignment assessment',
+      'Increased course pass rates from 40% to 92.5% through curriculum redesign',
+      'Delivered 24 structured lessons to international students and evaluated 270+ coding submissions',
     ],
-    technologies: ['Java', 'OOP', 'Awt', 'Swing'],
+    technologies: ['Object-Oriented Programming', 'Java', 'OOP', 'Awt', 'Swing'],
   },
   {
     id: 'tms-intern',
-    company: 'TMS',
+    company: 'ELTE Faculty of Informatics',
     position: 'Full Stack Engineer Intern',
     type: 'engineering',
     start_date: 'February 2025',
     end_date: 'November 2025',
     description:
-      "Supporting development and maintenance of ELTE's coding examination and plagiarism detection platform. Working with Yii Framework and React/TypeScript to implement new features.",
+      "Supported development and maintenance of ELTE's coding examination and plagiarism detection platform through the TMS (Task Management System) Project. Worked with Yii Framework and React/TypeScript to implement new features.",
     achievements: [
       'Delivered 16 backend and frontend features using REST APIs through Yii Framework and React/TypeScript',
       'Resolved 6 Docker deployment conflicts by implementing configurable naming for environment-aware container isolation',
       'Developed multi-institutional deployment framework with customizable branding and 20 cross-platform email templates',
     ],
     technologies: ['REST APIs', 'Yii Framework', 'React.js', 'TypeScript', 'Docker'],
-  },
-  {
-    id: 'elte-oop',
-    company: 'ELTE IK',
-    position: 'Teaching Instructor (OOP)',
-    type: 'teaching',
-    start_date: 'February 2025',
-    end_date: 'June 2025',
-    description:
-      'Teaching core OOP concepts and Java programming to international student groups. Preparing lesson materials, running live coding demonstrations, and providing detailed feedback on student submissions.',
-    achievements: [
-      'Increased course pass rates from 40% to 92.5% through curriculum redesign',
-      'Delivered 24 structured lessons to international students and evaluated 270+ coding submissions',
-    ],
-    technologies: ['Object-Oriented Programming', 'Java'],
   },
   {
     id: 'elte-bsc',
