@@ -5,11 +5,14 @@ import { skills } from '../lib/data'
 <section id="skills" class="relative py-24">
   <div class="max-w-[900px] mx-auto px-8 lg:px-12">
     <div class="flex flex-col items-center text-center">
-      <h2 class="section-title">Skills</h2>
+      <h2 class="section-title reveal">Skills</h2>
 
       <div class="flex flex-wrap justify-center gap-x-12 gap-y-6 mt-12">
-        {skills.map((skill) => (
-          <span class="text-sm lg:text-base text-foreground-light hover:text-foreground hover:underline hover:decoration-accent hover:decoration-2 hover:underline-offset-4 transition-all cursor-default">
+        {skills.map((skill, i) => (
+          <span
+            class="skill-item reveal"
+            data-delay={i * 40}
+          >
             {skill}
           </span>
         ))}

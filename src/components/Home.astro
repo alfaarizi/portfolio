@@ -12,11 +12,11 @@ import { ArrowRight, ExternalLink, Mail } from 'lucide-astro'
         <img
           src="/images/portrait.jpg"
           alt="Muhammad Al Farizi"
-          class="w-80 h-96 bg-secondary rounded-lg mb-6 object-cover"
+          class="hero-portrait w-80 h-96 bg-secondary rounded-lg mb-6 object-cover"
         />
 
         <!-- CTAs -->
-        <div class="grid grid-cols-3 gap-4 w-full max-w-sm">
+        <div class="hero-cta grid grid-cols-3 gap-4 w-full max-w-sm">
           <a
             href="#projects"
             class="px-4 py-2.5 bg-foreground text-primary font-medium text-center rounded hover:bg-foreground/90 transition-colors text-sm flex items-center justify-center gap-1.5"
@@ -47,18 +47,18 @@ import { ArrowRight, ExternalLink, Mail } from 'lucide-astro'
       <div class="space-y-10 text-left mx-auto lg:mx-0 max-w-2xl">
         <!-- Name & Title -->
         <div>
-          <h1 class="font-serif text-5xl lg:text-6xl mb-3 leading-tight">{personal_info.first_name} {personal_info.last_name}</h1>
-          <p class="text-xl lg:text-2xl text-accent mb-2 font-medium">{personal_info.title}</p>
-          <p class="text-base lg:text-lg text-foreground-light">{personal_info.description}</p>
+          <h1 class="hero-name font-serif text-5xl lg:text-6xl mb-3 leading-tight">{personal_info.first_name} {personal_info.last_name}</h1>
+          <p class="hero-title text-xl lg:text-2xl text-accent mb-2 font-medium">{personal_info.title}</p>
+          <p class="hero-desc text-base lg:text-lg text-foreground-light">{personal_info.description}</p>
         </div>
 
         <!-- Bio -->
-        <p class="text-lg lg:text-xl leading-relaxed text-foreground-medium text-justify">
+        <p class="hero-bio text-lg lg:text-xl leading-relaxed text-foreground-medium text-justify">
           {personal_info.bio}
         </p>
 
         <!-- Currently & Leadership -->
-        <div class="space-y-8">
+        <div class="hero-details space-y-8">
           <!-- Currently -->
           <div>
             <h2 class="text-sm uppercase tracking-wider text-foreground-lighter mb-4 font-medium">Currently</h2>

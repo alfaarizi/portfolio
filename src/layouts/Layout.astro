@@ -25,5 +25,57 @@ const {
     <style is:global>
       @import '../styles/global.css';
     </style>
+
+    <!-- Lenis Smooth Scroll -->
+    <script>
+      import Lenis from '@studio-freight/lenis'
+
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+      })
+
+      function raf(time: number) {
+        lenis.raf(time)
+        requestAnimationFrame(raf)
+      }
+
+      requestAnimationFrame(raf)
+
+      // Make anchor links work with Lenis
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', (e) => {
+          e.preventDefault()
+          const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href')
+          if (!href) return
+          const target = document.querySelector(href)
+          if (target) {
+            lenis.scrollTo(target as HTMLElement, { offset: -80 })
+          }
+        })
+      })
+    </script>
+
+    <!-- Scroll Reveal Observer -->
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target as HTMLElement
+              const delay = el.dataset.delay || '0'
+              setTimeout(() => {
+                el.classList.add('is-visible')
+              }, parseInt(delay))
+              observer.unobserve(el)
+            }
+          })
+        },
+        { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+      )
+
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el))
+    </script>
   </body>
 </html>

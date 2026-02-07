@@ -10,33 +10,35 @@ const socialIcons = [
 ]
 ---
 
-<section id="contact" class="relative py-24">
+<section id="contact" class="relative pt-24 pb-32">
   <div class="max-w-5xl mx-auto px-8 lg:px-12">
     <div class="flex flex-col items-center text-center">
-      <h2 class="section-title">Contact</h2>
+      <h2 class="section-title reveal">Contact</h2>
 
       <div class="mt-12 max-w-[900px]">
-        <p class="text-lg lg:text-xl text-foreground-light mb-12 text-center" style="line-height: 2.0; word-spacing: 0.3em;">
+        <p class="reveal text-lg lg:text-xl text-foreground-light mb-12 text-center" style="line-height: 2.0; word-spacing: 0.3em;" data-delay="100">
           {contact.description}
         </p>
 
         <!-- Email -->
         <a
           href={`mailto:${contact.email}`}
-          class="inline-flex items-center gap-2 text-lg lg:text-xl font-medium hover:text-accent transition-colors mb-8"
+          class="reveal inline-flex items-center gap-2 text-lg lg:text-xl font-medium hover:text-accent transition-colors mb-8"
+          data-delay="200"
         >
           {contact.email}
         </a>
 
         <!-- Social Links -->
-        <div class="flex justify-center gap-6 mt-8">
-          {socialIcons.map((icon) => (
+        <div class="flex justify-center gap-6 mt-8 mb-16">
+          {socialIcons.map((icon, i) => (
             <a
               href={icon.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-muted hover:text-accent transition-colors"
+              class="reveal text-muted hover:text-accent hover:scale-110 transition-all duration-300"
               aria-label={icon.name}
+              data-delay={300 + i * 60}
             >
               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d={icon.path} />

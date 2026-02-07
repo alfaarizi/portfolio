@@ -5,10 +5,6 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
     @apply bg-primary text-foreground font-mono;
   }
@@ -40,15 +36,94 @@
     @apply font-serif text-4xl lg:text-5xl mb-8 border-b-2 border-accent pb-1;
   }
 
-  /* Fade-up animation */
-  .fade-up {
+  /* ===== Scroll Reveal ===== */
+  .reveal {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(30px);
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .fade-up.visible {
+  .reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* ===== Hero Entrance (CSS only) ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.94); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  .hero-portrait  { opacity: 0; animation: scaleIn  0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards; }
+  .hero-name      { opacity: 0; animation: fadeUp   0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards; }
+  .hero-title     { opacity: 0; animation: fadeUp   0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards; }
+  .hero-desc      { opacity: 0; animation: fadeUp   0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards; }
+  .hero-bio       { opacity: 0; animation: fadeUp   0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards; }
+  .hero-cta       { opacity: 0; animation: fadeUp   0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards; }
+  .hero-details   { opacity: 0; animation: fadeUp   0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards; }
+
+  /* ===== Testimonials Marquee ===== */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-33.333%); }
+  }
+
+  .testimonial-marquee {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .testimonial-track {
+    display: flex;
+    gap: 3rem;
+    width: max-content;
+    animation: marquee 90s linear infinite;
+    will-change: transform;
+  }
+
+  .testimonial-item {
+    flex-shrink: 0;
+    width: 600px;
+    max-width: 90vw;
+    padding: 0 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .testimonial-track {
+      animation-duration: 60s;
+      gap: 2rem;
+    }
+
+    .testimonial-item {
+      width: 400px;
+      padding: 0 1rem;
+    }
+  }
+
+  /* ===== Skills Animated Underline ===== */
+  .skill-item {
+    @apply relative text-sm lg:text-base text-foreground-light cursor-default;
+    transition: color 0.3s ease;
+  }
+
+  .skill-item::after {
+    content: '';
+    position: absolute;
+    inset: auto auto -4px 0;
+    width: 0;
+    height: 2px;
+    background: theme('colors.accent');
+    transition: width 0.3s ease;
+  }
+
+  .skill-item:hover { @apply text-foreground; }
+  .skill-item:hover::after { width: 100%; }
 }

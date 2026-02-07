@@ -5,31 +5,29 @@ import { recognitions } from '../lib/data'
 <section id="recognitions" class="relative py-24 bg-white">
   <div class="max-w-7xl mx-auto px-8 lg:px-12">
     <div class="flex flex-col items-center">
-      <h2 class="section-title mb-16">Recognitions</h2>
+      <h2 class="section-title mb-16 reveal">Recognitions</h2>
 
       <div class="recognition-grid">
-        {
-          recognitions.map((recognition) => (
-            <article class="recognition-card">
-              <div class="recognition-image-container">
-                <img
-                  src={recognition.image}
-                  alt={recognition.title}
-                  class="recognition-image"
-                  loading="lazy"
-                />
-              </div>
-              <div class="recognition-content">
-                <p class="recognition-date">{recognition.date}</p>
-                <h3 class="recognition-title">{recognition.title}</h3>
-                <p class="recognition-issuer">Issued by {recognition.issuer}</p>
-                {recognition.description && (
-                  <p class="recognition-description">{recognition.description}</p>
-                )}
-              </div>
-            </article>
-          ))
-        }
+        {recognitions.map((recognition, i) => (
+          <article class="recognition-card reveal" data-delay={i * 100}>
+            <div class="recognition-image-container">
+              <img
+                src={recognition.image}
+                alt={recognition.title}
+                class="recognition-image"
+                loading="lazy"
+              />
+            </div>
+            <div class="recognition-content">
+              <p class="recognition-date">{recognition.date}</p>
+              <h3 class="recognition-title">{recognition.title}</h3>
+              <p class="recognition-issuer">Issued by {recognition.issuer}</p>
+              {recognition.description && (
+                <p class="recognition-description">{recognition.description}</p>
+              )}
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   </div>
@@ -50,14 +48,25 @@ import { recognitions } from '../lib/data'
   }
 
   .recognition-image-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
     padding: 4px;
+    overflow: hidden;
   }
 
   .recognition-image {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    height: 100%;
     object-fit: cover;
     border-radius: 0.5rem;
+    display: block;
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+  }
+
+  .recognition-card:hover .recognition-image {
+    transform: scale3d(1.015, 1.015, 1);
   }
 
   .recognition-content {
