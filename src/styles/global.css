@@ -85,7 +85,7 @@
     display: flex;
     gap: 3rem;
     width: max-content;
-    animation: marquee 90s linear infinite;
+    animation: marquee 40s linear infinite;
     will-change: transform;
   }
 
@@ -98,7 +98,7 @@
 
   @media (max-width: 768px) {
     .testimonial-track {
-      animation-duration: 60s;
+      animation-duration: 25s;
       gap: 2rem;
     }
 
