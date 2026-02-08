@@ -3,23 +3,25 @@ import { personal_info, currently, leadership } from '../lib/data'
 import { ArrowRight, ExternalLink, Mail } from 'lucide-astro'
 ---
 
-<section id="home" class="relative min-h-screen pt-24 pb-16 flex items-center justify-center">
-  <div class="max-w-6xl mx-auto px-8 lg:px-12 w-full">
+<section id="home" class="relative min-h-screen pt-24 pb-20 flex items-center justify-center">
+  <div class="max-w-7xl mx-auto px-8 lg:px-12 w-full">
     <div class="grid grid-cols-1 lg:grid-cols-[380px,1fr] gap-16 items-start justify-items-center lg:justify-items-start">
       <!-- Left Column: Photo & CTAs -->
       <div class="flex flex-col items-center lg:items-start w-full">
         <!-- Photo -->
-        <img
-          src="/images/portrait.jpg"
-          alt="Muhammad Al Farizi"
-          class="hero-portrait w-80 h-96 bg-secondary rounded-lg mb-6 object-cover"
-        />
+        <div class="hero-portrait portrait-container w-80 h-96 rounded-lg mb-6 overflow-hidden">
+          <img
+            src="/images/portrait.jpg"
+            alt="Muhammad Al Farizi"
+            class="portrait-image w-full h-full object-cover"
+          />
+        </div>
 
         <!-- CTAs -->
         <div class="hero-cta grid grid-cols-3 gap-4 w-full max-w-sm">
           <a
             href="#projects"
-            class="px-4 py-2.5 bg-foreground text-primary font-medium text-center rounded hover:bg-foreground/90 transition-colors text-sm flex items-center justify-center gap-1.5"
+            class="px-4 py-2.5 bg-foreground text-primary font-medium text-center rounded hover:bg-foreground/85 transition-colors text-sm flex items-center justify-center gap-1.5"
           >
             Projects
             <ArrowRight size={14} />
@@ -28,14 +30,14 @@ import { ArrowRight, ExternalLink, Mail } from 'lucide-astro'
             href="/cv.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            class="px-4 py-2.5 border border-foreground text-foreground font-medium text-center rounded hover:bg-foreground/5 transition-colors text-sm flex items-center justify-center gap-1.5"
+            class="px-4 py-2.5 bg-transparent text-foreground font-medium text-center rounded hover:bg-foreground/5 transition-colors text-sm flex items-center justify-center gap-1.5"
           >
             CV
             <ExternalLink size={14} />
           </a>
           <a
             href="#contact"
-            class="px-4 py-2.5 border border-foreground text-foreground font-medium text-center rounded hover:bg-foreground/5 transition-colors text-sm flex items-center justify-center gap-1.5"
+            class="px-4 py-2.5 bg-transparent text-foreground font-medium text-center rounded hover:bg-foreground/5 transition-colors text-sm flex items-center justify-center gap-1.5"
           >
             Contact
             <Mail size={14} />
@@ -86,3 +88,13 @@ import { ArrowRight, ExternalLink, Mail } from 'lucide-astro'
   <!-- Background Pattern -->
   <div class="absolute inset-0 pattern-dots pointer-events-none -z-10"></div>
 </section>
+
+<style>
+  .portrait-image {
+    transition: transform 0.3s ease-out;
+  }
+
+  .portrait-container:hover .portrait-image {
+    transform: scale3d(1.02, 1.02, 1);
+  }
+</style>

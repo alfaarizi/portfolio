@@ -2,53 +2,71 @@
 import { recognitions } from '../lib/data'
 ---
 
-<section id="recognitions" class="relative py-24 bg-white">
+<section id="recognitions" class="relative pt-28 pb-20 bg-white">
   <div class="max-w-7xl mx-auto px-8 lg:px-12">
     <div class="flex flex-col items-center">
-      <h2 class="section-title mb-16 reveal">Recognitions</h2>
+      <h2 class="section-title mb-16 reveal">Notable <span class="text-accent">Achievements</span></h2>
+    </div>
 
-      <div class="recognition-grid">
-        {recognitions.map((recognition, i) => (
-          <article class="recognition-card reveal" data-delay={i * 100}>
-            <div class="recognition-image-container">
-              <img
-                src={recognition.image}
-                alt={recognition.title}
-                class="recognition-image"
-                loading="lazy"
-              />
-            </div>
-            <div class="recognition-content">
-              <p class="recognition-date">{recognition.date}</p>
-              <h3 class="recognition-title">{recognition.title}</h3>
-              <p class="recognition-issuer">Issued by {recognition.issuer}</p>
-              {recognition.description && (
-                <p class="recognition-description">{recognition.description}</p>
-              )}
-            </div>
-          </article>
-        ))}
-      </div>
+    <div class="recognition-carousel reveal" id="recognition-carousel">
+      {recognitions.map((recognition) => (
+        <article class="recognition-card">
+          <div class="recognition-image-container">
+            <img
+              src={recognition.image}
+              alt={recognition.title}
+              class="recognition-image"
+              loading="lazy"
+            />
+          </div>
+          <div class="recognition-content">
+            <p class="recognition-date">{recognition.date}</p>
+            <h3 class="recognition-title">{recognition.title}</h3>
+            <p class="recognition-issuer">Issued by {recognition.issuer}</p>
+            {recognition.description && (
+              <p class="recognition-description">{recognition.description}</p>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="recognition-nav">
+      <button class="recognition-nav-btn" id="recognition-prev" aria-label="Previous" disabled>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="recognition-nav-btn" id="recognition-next" aria-label="Next">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
     </div>
   </div>
 </section>
 
 <style>
-  .recognition-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  .recognition-carousel {
+    display: flex;
     gap: 1.5rem;
-    width: 100%;
-    max-width: 1200px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+  }
+
+  .recognition-carousel::-webkit-scrollbar {
+    display: none;
   }
 
   .recognition-card {
+    flex: 0 0 350px;
     display: flex;
     flex-direction: column;
+    scroll-snap-align: start;
   }
 
   .recognition-image-container {
-    position: relative;
     width: 100%;
     aspect-ratio: 4 / 3;
     padding: 4px;
@@ -62,7 +80,6 @@ import { recognitions } from '../lib/data'
     border-radius: 0.5rem;
     display: block;
     transition: transform 0.3s ease-out;
-    will-change: transform;
   }
 
   .recognition-card:hover .recognition-image {
@@ -107,9 +124,76 @@ import { recognitions } from '../lib/data'
     text-align: justify;
   }
 
-  @media (max-width: 768px) {
-    .recognition-grid {
+  .recognition-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .recognition-nav-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    color: var(--foreground);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .recognition-nav-btn:hover:not(:disabled) {
+    background: rgba(15, 15, 15, 0.05);
+  }
+
+  .recognition-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 640px) {
+    .recognition-card {
+      flex: 0 0 280px;
+    }
+
+    .recognition-carousel {
       gap: 1rem;
     }
   }
 </style>
+
+<script>
+  const carousel = document.getElementById('recognition-carousel')
+  const prevBtn = document.getElementById('recognition-prev') as HTMLButtonElement
+  const nextBtn = document.getElementById('recognition-next') as HTMLButtonElement
+
+  if (carousel && prevBtn && nextBtn) {
+    const firstCard = carousel.querySelector('.recognition-card') as HTMLElement
+
+    function getScrollStep() {
+      const gap = parseFloat(getComputedStyle(carousel!).gap) || 24
+      return firstCard.offsetWidth + gap
+    }
+
+    function updateButtons() {
+      const scrollLeft = Math.round(carousel!.scrollLeft)
+      const maxScroll = carousel!.scrollWidth - carousel!.clientWidth
+      prevBtn.disabled = scrollLeft <= 0
+      nextBtn.disabled = scrollLeft >= maxScroll - 1
+    }
+
+    prevBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: -getScrollStep(), behavior: 'smooth' })
+    })
+
+    nextBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: getScrollStep(), behavior: 'smooth' })
+    })
+
+    carousel.addEventListener('scroll', updateButtons, { passive: true })
+    updateButtons()
+  }
+</script>

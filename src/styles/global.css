@@ -117,7 +117,7 @@
   .skill-item::after {
     content: '';
     position: absolute;
-    inset: auto auto -4px 0;
+    inset: auto auto -8px 0;
     width: 0;
     height: 2px;
     background: theme('colors.accent');

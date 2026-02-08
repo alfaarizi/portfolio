@@ -8,22 +8,23 @@ export const personal_info = {
   city: 'Budapest',
   country: 'Hungary',
   title: 'AI Engineer, Pythonista',
-  description: 'Senior CS @ ELTE • Prev: Quantum SWE @ QNL',
-  bio: 'Building autonomous multi-agent systems.',
+  description: 'Prev: Junior SWE @ QNL',
+  bio: 'Building autonomous multi-agent systems and full-stack AI applications with a focus on agentic workflows, tool orchestration, and retrieval-augmented generation.',
 }
 
 // Current Work
 export const currently = [
-  'QNL Junior Software Eng.',
-  'ELTE Teaching Instructor',
-  'TMS Full Stack Intern',
+  'Researching AI applications in quantum computing at QNL',
+  'Building coding examination and plagiarism detection site at TMS',
+  'Teaching Programming Technology at ELTE',
+  'Exploring multi-agent systems and LLM-based evaluation',
 ]
 
 // Leadership
 export const leadership = [
-  'GDG ELTE Technical Lead',
-  'ELTE Data Science Mentor',
-  'Student Support Sr. Mentor',
+  'Technical Lead at Google Developers Group ELTE',
+  'Founding Mentor at ELTE Data Science Club',
+  'Senior Mentor at Student Support Centre',
 ]
 
 // Skills
@@ -38,12 +39,19 @@ export const skills = [
   'Semantic Search',
   'OpenAI API',
   'Python',
+  'Java',
+  'JavaScript/TypeScript',
   'FastAPI',
   'React',
-  'TypeScript',
   'ChromaDB',
   'MongoDB',
+  'SQL',
+  'Git',
   'Docker',
+  'CI/CD',
+  'Linux/Bash',
+  'REST APIs',
+  'Mentorship',
 ]
 
 // Projects
@@ -293,5 +301,5 @@ export const social_links = {
 export const contact = {
   email: 'ziziyusrizal@gmail.com',
   description:
-    "I'm always open to discussing AI engineering opportunities, multi-agent systems, or research collaborations. Feel free to reach out.",
+    "I'm always open to discussing AI engineering opportunities, research collaborations, and agentic systems. Feel free to reach out.",
 }
