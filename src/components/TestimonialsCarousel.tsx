@@ -8,7 +8,8 @@ interface Props {
 
 export default function TestimonialsCarousel({ testimonials }: Props) {
   // Duplicate testimonials for infinite scroll
-  const duplicatedTestimonials = [...testimonials, ...testimonials, ...testimonials]
+  const DUPLICATE_COUNT = 3
+  const duplicatedTestimonials = Array(DUPLICATE_COUNT).fill(testimonials).flat()
 
   return (
     <div className="w-full overflow-hidden">

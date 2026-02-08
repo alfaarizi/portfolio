@@ -71,51 +71,33 @@
   const menuCloseButton = document.getElementById('mobile-menu-close')
   const mobileMenu = document.getElementById('mobile-menu')
 
-  // Open menu
-  menuButton?.addEventListener('click', () => {
-    mobileMenu?.classList.remove('hidden')
-  })
+  const toggleMenu = (show: boolean) => {
+    mobileMenu?.classList.toggle('hidden', !show)
+  }
 
-  // Close menu with close button
-  menuCloseButton?.addEventListener('click', () => {
-    mobileMenu?.classList.add('hidden')
-  })
+  // Menu event handlers
+  menuButton?.addEventListener('click', () => toggleMenu(true))
+  menuCloseButton?.addEventListener('click', () => toggleMenu(false))
 
   // Close mobile menu when clicking a link
-  const mobileLinks = mobileMenu?.querySelectorAll('a')
-  mobileLinks?.forEach((link) => {
-    link.addEventListener('click', () => {
-      mobileMenu?.classList.add('hidden')
-    })
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => toggleMenu(false))
   })
 
   // Scroll-spy navigation
   const navLinks = document.querySelectorAll('.nav-link')
   const sections = Array.from(document.querySelectorAll('section[id]'))
+  const SCROLL_OFFSET = 200
+  const BOTTOM_THRESHOLD = 50
 
   function updateNav() {
-    const scrollY = window.scrollY
-    const windowHeight = window.innerHeight
-    const documentHeight = document.documentElement.scrollHeight
-    const offset = 200
+    const { scrollY, innerHeight } = window
+    const { scrollHeight } = document.documentElement
 
-    let current = ''
-
-    // Check if at bottom of page
-    if (scrollY + windowHeight >= documentHeight - 50) {
-      current = sections[sections.length - 1].id
-    } else {
-      // Find the current section
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i] as HTMLElement
-        const sectionTop = section.offsetTop - offset
-
-        if (scrollY >= sectionTop) {
-          current = section.id
-          break
-        }
-      }
-    }
+    // Determine current section
+    const current = scrollY + innerHeight >= scrollHeight - BOTTOM_THRESHOLD
+      ? sections[sections.length - 1].id
+      : sections.findLast(section => scrollY >= section.offsetTop - SCROLL_OFFSET)?.id || ''
 
     // Update nav links
     navLinks.forEach((link) => {

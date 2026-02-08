@@ -17,30 +17,27 @@ import { projects } from '../lib/data'
             data-delay={i * 80}
           >
             {/* Image Container */}
-            <div class="absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-105">
+            <div class="image-zoom-container">
               <img
                 src={project.image}
                 alt={project.name}
                 class="w-full h-full object-cover"
-                style={`
-                  ${project.objectPosition ? `object-position: ${project.objectPosition};` : ''}
-                  ${project.imageScale ? `transform: scale(${project.imageScale});` : ''}
-                `.trim()}
+                style={[
+                  project.objectPosition && `object-position: ${project.objectPosition}`,
+                  project.imageScale && `transform: scale(${project.imageScale})`
+                ].filter(Boolean).join('; ')}
                 loading="lazy"
               />
             </div>
 
             {/* Gradient overlay for light images */}
             {project.lightImage && (
-              <div
-                class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t to-transparent from-gray-900/20 backdrop-blur-sm"
-                style="will-change: backdrop-filter; transform: translateZ(0);"
-              ></div>
+              <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t to-transparent from-gray-900/20 backdrop-blur-sm"></div>
             )}
 
             {/* Content */}
             <div class="relative h-full flex flex-col justify-end p-6 lg:p-8 z-20">
-              <div class="space-y-2 transform transition-transform duration-500 ease-out group-hover:-translate-y-1">
+              <div class="space-y-2">
                 <h3 class={`text-2xl lg:text-3xl font-semibold leading-tight ${project.lightImage ? 'text-foreground' : 'text-white'}`}>
                   {project.name}
                 </h3>
@@ -59,7 +56,7 @@ import { projects } from '../lib/data'
               </div>
 
               {/* Links */}
-              <div class="flex gap-4 pt-6 transform transition-transform duration-500 ease-out group-hover:-translate-y-1">
+              <div class="flex gap-4 pt-6">
                 {project.live_url && (
                   <a
                     href={project.live_url}
@@ -111,6 +108,17 @@ import { projects } from '../lib/data'
 
   .bento-item {
     grid-area: var(--grid-area);
+  }
+
+  .image-zoom-container {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+  }
+
+  .group:hover .image-zoom-container {
+    transform: scale3d(1.02, 1.02, 1);
   }
 
   .backdrop-blur-sm {
